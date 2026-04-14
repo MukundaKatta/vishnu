@@ -1,6 +1,6 @@
 # vishnu — Unified Observability. Unified observability platform
 
-Unified Observability. Unified observability platform. vishnu gives you a focused, inspectable implementation of that idea.
+Unified Observability. Unified observability platform.
 
 ## Why vishnu
 
