@@ -1,56 +1,28 @@
-# 🔱 Vishnu — Unified Observability
+# vishnu — Unified Observability. Unified observability platform
 
-> **Hindu Mythology**: The Preserver | Unified observability platform
+Unified Observability. Unified observability platform. vishnu gives you a focused, inspectable implementation of that idea.
 
-[![GitHub Pages](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-blue?style=for-the-badge)](https://MukundaKatta.github.io/vishnu/)
-[![GitHub](https://img.shields.io/github/license/MukundaKatta/vishnu?style=flat-square)](LICENSE)
-[![Stars](https://img.shields.io/github/stars/MukundaKatta/vishnu?style=flat-square)](https://github.com/MukundaKatta/vishnu/stargazers)
+## Why vishnu
 
-## 🚀 Overview
+vishnu exists to make this workflow practical. Unified observability. unified observability platform. It favours a small, inspectable surface over sprawling configuration.
 
-Unified observability platform
+## How It Works
 
-**Tech Stack:** Python, Go
+The code is organised as a focused, single-purpose module with a clear entry point and minimal ceremony.
 
-## 📦 Quick Start
+## Getting Started
 
-```bash
-git clone https://github.com/MukundaKatta/vishnu.git
-cd vishnu
-# Follow setup instructions below
-```
+Clone the repository and inspect the source to see how to run it.
 
-## 🏗️ Project Structure
+## Usage
+
+See the source files and entry points for concrete usage patterns.
+
+## Project Structure
 
 ```
 vishnu/
-├── README.md
-├── LICENSE
 ├── CLAUDE.md
-├── .gitignore
-├── src/
-│   ├── main.py
-│   ├── config.py
-│   └── utils.py
-├── tests/
-│   └── test_main.py
-├── docs/
-│   └── architecture.md
-├── examples/
-│   └── basic_usage.py
-└── .github/
-    └── workflows/
-        └── static.yml
+├── LICENSE
+├── README.md
 ```
-
-## 🌐 Live Demo
-
-Visit the landing page: **https://MukundaKatta.github.io/vishnu/**
-
-## 📄 License
-
-MIT License — © 2026 Officethree Technologies
-
-## 🔱 Part of the Mythological Portfolio
-
-This is project **#vishnu** in the [100-project Mythological Portfolio](https://github.com/MukundaKatta) by Officethree Technologies.
