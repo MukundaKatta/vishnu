@@ -79,3 +79,63 @@ export function healthTier({ errorRate, p95 }, { targetP95Ms = 300, errorBudget 
   if (errorRate > errorBudget || p95 > targetP95Ms * 1.5) return "degraded";
   return "healthy";
 }
+
+/**
+ * Baseline telemetry contract for unified observability.
+ */
+export function createTelemetrySchema() {
+  return {
+    service: ["serviceName", "environment", "owner", "tier"],
+    logs: ["timestamp", "severity", "message", "traceId", "serviceName"],
+    metrics: ["timestamp", "metricName", "value", "unit", "serviceName"],
+    traces: ["traceId", "spanId", "parentSpanId", "operation", "durationMs", "serviceName"],
+  };
+}
+
+/**
+ * Service map entry used by the topology and health rollups.
+ */
+export function defineServiceMap(services) {
+  return services.map((service) => ({
+    name: service.name,
+    environment: service.environment || "prod",
+    dependsOn: service.dependsOn || [],
+    owners: service.owners || [],
+    telemetryStatus: service.telemetryStatus || "partial",
+  }));
+}
+
+/**
+ * Normalize incoming telemetry metadata so newly onboarded services land in
+ * a shared shape before they are considered healthy.
+ */
+export function normalizeTelemetrySource(source) {
+  return {
+    serviceName: source.serviceName || source.name || "unknown-service",
+    environment: source.environment || "prod",
+    owner: source.owner || "unassigned",
+    logFields: [...new Set(["timestamp", "severity", "message", ...(source.logFields || [])])],
+    metricFields: [...new Set(["timestamp", "metricName", "value", ...(source.metricFields || [])])],
+    traceFields: [...new Set(["traceId", "spanId", "durationMs", ...(source.traceFields || [])])],
+    status: source.complete ? "onboarded" : "partial",
+  };
+}
+
+/**
+ * Minimal onboarding checklist for a new service integration.
+ */
+export function createOnboardingWorkflow(source) {
+  const normalized = normalizeTelemetrySource(source);
+  return {
+    serviceName: normalized.serviceName,
+    steps: [
+      "register-service-metadata",
+      "map-log-fields",
+      "map-metric-fields",
+      "map-trace-fields",
+      "verify-owner-tags",
+      "mark-ready-for-health-dashboards",
+    ],
+    status: normalized.status,
+  };
+}
